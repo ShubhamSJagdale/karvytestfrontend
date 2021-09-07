@@ -7,7 +7,6 @@ const country = (state = initialState, action) => {
     case ADD_COUNTRYS:
       return [...state, ...action.payload];
     case ADD_COUNTRY:
-      console.log("patlo", [...state, action.payload])
       return [...state, action.payload];
     case REMOVE_COUNTRY:
       return state.filter((item) => item.rank !== action.payload);

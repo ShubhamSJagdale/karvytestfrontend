@@ -57,10 +57,8 @@ function AddCountryDialog({ show, addCountry }) {
     setFileuploadStatus(true);
     var formData = new FormData();
     formData.append("image", e.target.files[0]);
-    console.log("formData", formData);
     api({ method: "POST", path: "/uploadImage", data: formData })
       .then((res) => {
-        console.log("res", res.data?.filename);
         setFileName(res.data?.filename);
       })
       .catch((err) => console.log("ERR", err))
@@ -77,13 +75,12 @@ function AddCountryDialog({ show, addCountry }) {
     };
     api({ method: "POST", path: `/createcountry`, data: countryData })
       .then((res) => {
-        console.log("res", countryData);
-        addCountry({Id: countryData?.rank, name:countryData?.name})
+        addCountry({ Id: countryData?.rank, name: countryData?.name });
       })
       .catch((err) => {
         console.log("Err", err);
       })
-      .finally(handleClose());
+      .finally(handleClose(), reset({}));
   };
 
   const closePopup = () => {
